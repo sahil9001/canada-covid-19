@@ -1,9 +1,11 @@
 import React, { Component, useState, useEffect } from 'react'
 import './Dashboard.css';
+import Graph from './Graph';
 
 
 
 export default class Dashboard extends Component{
+    chartRef = React.createRef();
   constructor(props) {
     super(props)
     this.state = {
@@ -159,6 +161,7 @@ export default class Dashboard extends Component{
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">
+                                    <Graph/>
                                     </div>
                                 </div>
                             </div>
