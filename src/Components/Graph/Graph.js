@@ -3,10 +3,8 @@ import './Graph.css';
 
 function Graph() {
   return (
-    <div class="container">
-    <div class="container-fluid animated fadeInUp">
-          <div id="visualization"> </div>
-          </div>
+    <div class="container animated fadeInUp">
+          <div id="visualization" > </div>
     </div>
   );
 }

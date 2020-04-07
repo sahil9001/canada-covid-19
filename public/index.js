@@ -37,11 +37,11 @@ async function drawVisualization() {
         colorAxis:{ colors:['#e7eff6','#00059f']},
 
     };
-    function resize() {
+    
     var geochart = new google.visualization.GeoChart(
         document.getElementById('visualization'));
-    geochart.draw(data, opts);
-    }
-    window.onload = resize;
-    window.onresize = resize;
+   geochart.draw(data, opts);
+    $(window).smartresize(function () {
+        geochart.draw(data, opts);
+    });
 };
