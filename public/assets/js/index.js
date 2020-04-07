@@ -24,7 +24,7 @@ async function drawVisualization() {
             obj.push([data["加拿大"]["西北地区"].ENGLISH, data["加拿大"]["西北地区"].confirmedCount[Object.keys(data["加拿大"]["西北地区"].confirmedCount)[Object.keys(data["加拿大"]["西北地区"].confirmedCount).length - 1]]])
             obj.push([data["加拿大"]["魁北克省"].ENGLISH, data["加拿大"]["魁北克省"].confirmedCount[Object.keys(data["加拿大"]["魁北克省"].confirmedCount)[Object.keys(data["加拿大"]["萨斯喀彻温省"].confirmedCount).length - 1]]])
             obj.push(['Nunavut', 0])
-            //    console.log(obj)
+            console.log(obj)
         })
         .catch(error => console.error(error))
     var data = google.visualization.arrayToDataTable(obj
@@ -41,8 +41,5 @@ async function drawVisualization() {
     var geochart = new google.visualization.GeoChart(
         document.getElementById('visualization'));
     geochart.draw(data, opts);
-    $(window).smartresize(function () {
-        geochart.draw(data, opts);
-    });
-};
 
+};

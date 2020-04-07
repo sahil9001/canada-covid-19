@@ -7,8 +7,7 @@ import Navbar from './Components/NavBar/Navbar'
 function App() {
   return (
     <div>
-        <Navbar/>
-        <Dashboard/>
+       <Dashboard/>
     </div>
   );
 }
