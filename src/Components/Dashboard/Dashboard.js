@@ -58,21 +58,22 @@ export default class Dashboard extends Component{
         }
     }
   return (
-<div class="container">
-    <div class="column">
+
     <body id="page-top">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start accordion bg-gradient-primary p-0 animated fadeInUp">
            
         </nav>
+        
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top animated fadeInUp">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
-                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <h3 class="text-dark mb-0">Coronavirus Canada Statistics</h3>
+                    <div class="container-fluid">
+                        <h3 class="text-dark mb-0">COVID19 Canada</h3>
                     </div>
                 </nav>
+                <div class="container">
+    <div class="column">
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4"></div>
                     <div class="row">
@@ -212,11 +213,13 @@ export default class Dashboard extends Component{
                     <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
                 </div>
             </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+        </div>
+        </div>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 </body>
-</div>
-</div>
+
   );
               }
 }
