@@ -84,7 +84,7 @@ export default class Graph extends Component {
         return (
                 <canvas
                     id="myChart"
-                    style={{position:"relative"}}
+                  
                     ref={this.chartRef}
                 />
                

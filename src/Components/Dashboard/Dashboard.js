@@ -58,23 +58,12 @@ export default class Dashboard extends Component{
         }
     }
   return (
-
-     <body id="page-top">
+<div class="container">
+    <div class="column">
+    <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 animated fadeInUp">
-            <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-icon rotate-n-15"></div>
-                    <div class="sidebar-brand-text mx-3"><span>COVID19</span></div>
-                </a>
-                <hr class="sidebar-divider my-0 animated fadeInUp"/>
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i
-                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
-                        id="sidebarToggle" type="button"></button></div>
-            </div>
+        <nav class="navbar navbar-dark align-items-start accordion bg-gradient-primary p-0 animated fadeInUp">
+           
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
@@ -196,7 +185,6 @@ export default class Dashboard extends Component{
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Number</th>
                                             <th>Province</th>
                                             <th>Active cases</th>
                                         </tr>
@@ -204,11 +192,14 @@ export default class Dashboard extends Component{
                                     <tbody>
                                         {obj.map((event, index) => (
                                           <tr key={index + 1}>
-                                            <th scope="row">{index + 1}</th>
                                             <td>{event[0]}</td>
                                             <td>{event[1]}</td>
                                           </tr>
                                         ))}
+                                        <tr >
+                                            <td><b>Total</b></td>
+                                            <td><b>{this.state.active}</b></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -224,7 +215,8 @@ export default class Dashboard extends Component{
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 </body>
- 
+</div>
+</div>
   );
               }
 }
