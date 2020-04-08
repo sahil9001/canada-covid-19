@@ -50,14 +50,15 @@ export default class Dashboard extends Component{
         var obj1 = datas["加拿大"][key];
         var obje = obj1.ENGLISH;
         var objc = obj1.confirmedCount;
+        var objcur = obj1.deadCount;
         if(obje !== undefined && !isEmpty(objc)){
-            obj.push([obje,objc[Object.keys(objc)[Object.keys(objc).length - 1]]]);
+            obj.push([obje,objc[Object.keys(objc)[Object.keys(objc).length - 1]],objcur[Object.keys(objcur)[Object.keys(objcur).length - 1]]]);
         }
         else if(isEmpty(objc) && obje !== undefined){
-            obj.push([obje,0])
+            obj.push([obje,0,0])
         }
     }
-    obj.push(['Nunavut', 0])
+    obj.push(['Nunavut', 0,0])
     console.log(obj)
   return (
     <body id="page-top">
@@ -189,6 +190,7 @@ export default class Dashboard extends Component{
                                         <tr>
                                             <th>Province</th>
                                             <th>Active cases</th>
+                                            <th>Deaths</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -196,11 +198,13 @@ export default class Dashboard extends Component{
                                           <tr key={index + 1}>
                                             <td>{event[0]}</td>
                                             <td>{event[1]}</td>
+                                            <td>{event[2] = event[2]==undefined ? 0: event[2]}</td>
                                           </tr>
                                         ))}
                                         <tr >
                                             <td><b>Total</b></td>
                                             <td><b>{this.state.active}</b></td>
+                                            <td><b>{this.state.dead}</b></td>
                                         </tr>
                                     </tbody>
                                 </table>

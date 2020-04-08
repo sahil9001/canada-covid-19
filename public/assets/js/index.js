@@ -9,7 +9,7 @@ async function drawVisualization() {
         .then(data => {
             // console.log(data.sheets["latest totals"]); // Prints result from `response.json()` in getRequest
             obj.push(['State', 'Confirmed'])
-            //  console.log(data);
+             // console.log(data["加拿大"]);
             
     function isEmpty(obj) {
         for(var key in obj) {
