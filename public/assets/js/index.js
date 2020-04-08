@@ -42,7 +42,8 @@ async function drawVisualization() {
         // displayMode: 'regions',
         resolution: 'provinces',
         colorAxis: { colors: ['#e7eff6', '#00059f'] },
-        
+        width:'100%',
+        height:'100%'
     };
 
     var geochart = new google.visualization.GeoChart(
