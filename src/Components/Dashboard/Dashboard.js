@@ -71,12 +71,6 @@ export default class Dashboard extends Component{
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="table-1.html"><i
-                                class="fas fa-table"></i><span>Table</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -87,7 +81,7 @@ export default class Dashboard extends Component{
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top animated fadeInUp">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <h3 class="text-dark mb-0">Dashboard</h3>
+                        <h3 class="text-dark mb-0">Coronavirus Canada Statistics</h3>
                     </div>
                 </nav>
                 <div class="container-fluid">
