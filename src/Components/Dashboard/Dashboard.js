@@ -57,8 +57,8 @@ export default class Dashboard extends Component{
             obj.push([obje,0])
         }
     }
+    console.log(obj)
   return (
-
     <body id="page-top">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start accordion bg-gradient-primary p-0 animated fadeInUp">
