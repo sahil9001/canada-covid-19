@@ -57,6 +57,7 @@ export default class Dashboard extends Component{
             obj.push([obje,0])
         }
     }
+    obj.push(['Nunavut', 0])
     console.log(obj)
   return (
     <body id="page-top">
