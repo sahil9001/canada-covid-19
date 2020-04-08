@@ -141,7 +141,7 @@ export default class Dashboard extends Component{
                     </div>
                     
                     <div class="row">
-                        <div class="col-lg-7 col-xl-8">
+                        <div class="col-lg col-xl">
                             <div class="card shadow mb-4 animated fadeInUp">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary font-weight-bold m-0">Statistics</h6>
@@ -166,7 +166,7 @@ export default class Dashboard extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-xl-4">
+                        <div class="col-lg col-xl">
                             <div class="card shadow mb-4 animated fadeInUp">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary font-weight-bold m-0">Map</h6>

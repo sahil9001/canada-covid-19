@@ -35,11 +35,13 @@ async function drawVisualization() {
         // displayMode: 'regions',
         resolution: 'provinces',
         colorAxis: { colors: ['#e7eff6', '#00059f'] },
-
+        
     };
 
     var geochart = new google.visualization.GeoChart(
         document.getElementById('visualization'));
     geochart.draw(data, opts);
-
+    $(window).resize(function(){
+        drawVisualization();
+      });
 };

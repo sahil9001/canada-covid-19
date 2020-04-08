@@ -30,7 +30,10 @@ export default class Graph extends Component {
          var activec = this.state.activec;
          console.log(activec)
          for(var key in activec){
-             labels.push(key)
+             var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
+             var d = key.split("-");
+             var monthName = parseInt(d[1])
+             labels.push(months[monthName-1] +" " +  d[2]);
              datac.push(activec[key])
          }
          console.log(labels)
@@ -42,13 +45,26 @@ export default class Graph extends Component {
                 labels: labels,
                 datasets: [
                     {
+                        fill:true,
+                        backgroundColor:"rgba(65, 131, 215, 0.5)",
                         label: "Active cases",
                         data: datac,
                     }
                 ]
             },
             options: {
-               responsive:true
+               responsive:true,
+               scales:{
+                   xAxes:[
+                       {
+                           ticks:{
+                            display: true,
+                            autoSkip: true,
+                            maxTicksLimit: 20
+                           }
+                       }
+                   ]
+               }
             }
         });
      }
@@ -59,12 +75,12 @@ export default class Graph extends Component {
     render() {
         console.log(this.chartRef)
         return (
-            
                 <canvas
                     id="myChart"
-                   
+                    style={{position:"relative"}}
                     ref={this.chartRef}
                 />
+               
         )
     }
 }
