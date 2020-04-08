@@ -60,10 +60,17 @@ export default class Graph extends Component {
                            ticks:{
                             display: true,
                             autoSkip: true,
-                            maxTicksLimit: 20
+                            maxTicksLimit: 10
                            }
                        }
-                   ]
+                   ],
+                   yAxes:[{
+                       ticks:{
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 6
+                       }
+                   }]
                }
             }
         });
