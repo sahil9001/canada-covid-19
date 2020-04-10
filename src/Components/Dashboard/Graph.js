@@ -28,7 +28,6 @@ export default class Graph extends Component {
          var labels = [];
          var datac = []
          var activec = this.state.activec;
-         console.log(activec)
          for(var key in activec){
              var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
              var d = key.split("-");
@@ -36,7 +35,7 @@ export default class Graph extends Component {
              labels.push(months[monthName-1] +" " +  d[2]);
              datac.push(activec[key])
          }
-         console.log(labels)
+         
          const myChartRef = this.chartRef.current.getContext("2d");
         new Chart(myChartRef, {
             type: "line",
@@ -80,7 +79,6 @@ export default class Graph extends Component {
         this.fetchChart();
     }
     render() {
-        console.log(this.chartRef)
         return (
                 <canvas
                     id="myChart"

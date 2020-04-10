@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react'
-import './Dashboard.css';
+import React, { Component} from 'react'
+
 import Graph from './Graph';
 
 
@@ -35,8 +35,6 @@ export default class Dashboard extends Component{
     var active = this.state.active;
     var cured = this.state.cured;
     var dead = this.state.dead;
-    //console.log(datas)
-    //var tactive = active[Object.keys(active)[Object.keys(active).length - 1]];
     var obj = [];
     function isEmpty(obj) {
         for(var key in obj) {
@@ -59,7 +57,7 @@ export default class Dashboard extends Component{
         }
     }
     obj.push(['Nunavut', 0,0])
-    console.log(obj)
+   
   return (
     <body id="page-top">
     <div id="wrapper">
@@ -137,11 +135,11 @@ export default class Dashboard extends Component{
                                         <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
                                             role="menu">
                                             <p class="text-center dropdown-header">dropdown header:</p><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Another
+                                                class="dropdown-item" role="presentation" href="/#">&nbsp;Action</a><a
+                                                class="dropdown-item" role="presentation" href="/#">&nbsp;Another
                                                 action</a>
                                             <div class="dropdown-divider"></div><a class="dropdown-item"
-                                                role="presentation" href="#">&nbsp;Something else here</a>
+                                                role="presentation" href="/#">&nbsp;Something else here</a>
                                         </div>
                                     </div>
                                 </div>
@@ -162,11 +160,11 @@ export default class Dashboard extends Component{
                                         <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
                                             role="menu">
                                             <p class="text-center dropdown-header">dropdown header:</p><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Another
+                                                class="dropdown-item" role="presentation" href="/#">&nbsp;Action</a><a
+                                                class="dropdown-item" role="presentation" href="/#">&nbsp;Another
                                                 action</a>
                                             <div class="dropdown-divider"></div><a class="dropdown-item"
-                                                role="presentation" href="#">&nbsp;Something else here</a>
+                                                role="presentation" href="/#">&nbsp;Something else here</a>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +196,7 @@ export default class Dashboard extends Component{
                                           <tr key={index + 1}>
                                             <td>{event[0]}</td>
                                             <td>{event[1]}</td>
-                                            <td>{event[2] = event[2]==undefined ? 0: event[2]}</td>
+                                            <td>{event[2] = event[2]===undefined ? 0: event[2]}</td>
                                           </tr>
                                         ))}
                                         <tr >
