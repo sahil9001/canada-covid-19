@@ -1,59 +1,56 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component, useState, useEffect } from 'react';
 
 export default class Table extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       data: [],
       index: '',
       act: 0
-    }
-
+    };
   }
   async fetchAPI() {
-    fetch("https://raw.githubusercontent.com/stevenliuyi/covid19/master/public/data/all.json")
+    fetch('https://raw.githubusercontent.com/stevenliuyi/covid19/master/public/data/all.json')
       .then(res => res.json())
       .then(res =>
-          this.setState({
+        this.setState({
           data: res
-        }))
-      .catch(err => console.log(err))
+        })
+      )
+      .catch(err => console.log(err));
   }
   componentDidMount() {
     this.fetchAPI();
   }
   render() {
-    var datas = this.state.data
+    var datas = this.state.data;
     var obj = [];
     function isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+      return true;
     }
-    for (var key in datas["加拿大"]) {
-        if (!datas["加拿大"].hasOwnProperty(key)) continue;
-        var obj1 = datas["加拿大"][key];
-        var obje = obj1.ENGLISH;
-        var objc = obj1.confirmedCount;
-        if(obje !== undefined && !isEmpty(objc)){
-            obj.push([obje,objc[Object.keys(objc)[Object.keys(objc).length - 1]]]);
-        }
-        else if(isEmpty(objc) && obje !== undefined){
-            obj.push([obje,0])
-        }
+    for (var key in datas['加拿大']) {
+      if (!datas['加拿大'].hasOwnProperty(key)) continue;
+      var obj1 = datas['加拿大'][key];
+      var obje = obj1.ENGLISH;
+      var objc = obj1.confirmedCount;
+      if (obje !== undefined && !isEmpty(objc)) {
+        obj.push([obje, objc[Object.keys(objc)[Object.keys(objc).length - 1]]]);
+      } else if (isEmpty(objc) && obje !== undefined) {
+        obj.push([obje, 0]);
+      }
     }
     return (
-        <div class="container animated fadeInUp delay-1s">
+      <div class="container animated fadeInUp delay-1s">
         <div class="scrollable">
-          <table class="table" >
+          <table class="table">
             <thead class="thead-dark ">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Provinces</th>
                 <th scope="col">Active</th>
-             
               </tr>
             </thead>
             <tbody>
@@ -66,8 +63,8 @@ export default class Table extends Component {
               ))}
             </tbody>
           </table>
+        </div>
       </div>
-      </div>
-    )
+    );
   }
 }
