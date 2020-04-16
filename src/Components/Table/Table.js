@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 
 export default function Table(props) {
-  const [sortConfig, setSortConfig] = useState(null);
+  const [sortConfig, setSortConfig] = useState({ field: 'province', ascending: true });
   const tableData = props.data;
   const canadaKey = '加拿大';
   const tableRows = [];
