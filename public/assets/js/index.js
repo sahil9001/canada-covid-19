@@ -1,5 +1,5 @@
-google.load('visualization', '1', { 'packages': ['geochart'] });
-google.setOnLoadCallback(drawVisualization);
+window.google.load('visualization', '1', { 'packages': ['geochart'] });
+window.google.setOnLoadCallback(drawVisualization);
 const url = 'https://raw.githubusercontent.com/stevenliuyi/covid19/master/public/data/all.json';
 
 async function drawVisualization() {
@@ -30,7 +30,7 @@ async function drawVisualization() {
             obj.push(['Nunavut', 0])
         })
         .catch(error => console.error(error))
-    var data = google.visualization.arrayToDataTable(obj
+    var data = window.google.visualization.arrayToDataTable(obj
     )
     var opts = {
         region: 'CA',
@@ -41,10 +41,10 @@ async function drawVisualization() {
         height: '100%'
     };
 
-    var geochart = new google.visualization.GeoChart(
+    var geochart = new window.google.visualization.GeoChart(
         document.getElementById('visualization'));
     geochart.draw(data, opts);
-    $(window).resize(function () {
+    window.$(window).resize(function () {
         drawVisualization();
     });
 };
