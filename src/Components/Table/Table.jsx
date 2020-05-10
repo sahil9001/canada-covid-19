@@ -1,22 +1,21 @@
 import React, { useState, useMemo } from 'react';
 
-export default function Table(props) {
+const Table = props => {
   const [sortConfig, setSortConfig] = useState({ field: 'province', ascending: true });
   const tableData = props.data;
-  const canadaKey = '加拿大';
   const tableRows = [];
 
-  function isEmpty(obj) {
+  const isEmpty = obj => {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) return false;
     }
     return true;
-  }
+  };
 
-  for (const key in tableData[canadaKey]) {
-    if (!tableData[canadaKey].hasOwnProperty(key)) continue;
+  for (const key in tableData) {
+    if (!tableData.hasOwnProperty(key)) continue;
 
-    const item = tableData[canadaKey][key];
+    const item = tableData[key];
     const province = item.ENGLISH;
     const confirmed = item.confirmedCount;
     const cured = item.curedCount;
@@ -63,7 +62,7 @@ export default function Table(props) {
     setSortConfig({ field, ascending });
   };
 
-  const getClassNamesFor = (field) => {
+  const getClassNamesFor = field => {
     if (!sortConfig || sortConfig.field !== field) {
       return 'fa-sort';
     }
@@ -88,7 +87,7 @@ export default function Table(props) {
               <div className="d-flex align-items-center justify-content-between">
                 Confirmed cases
                 <button className="btn" type="button" onClick={() => requestSort('confirmed')}>
-                <i className={`fas ${getClassNamesFor('confirmed')}`}></i>
+                  <i className={`fas ${getClassNamesFor('confirmed')}`}></i>
                 </button>
               </div>
             </th>
@@ -96,7 +95,7 @@ export default function Table(props) {
               <div className="d-flex align-items-center justify-content-between">
                 Cured
                 <button className="btn" type="button" onClick={() => requestSort('cured')}>
-                <i className={`fas ${getClassNamesFor('cured')}`}></i>
+                  <i className={`fas ${getClassNamesFor('cured')}`}></i>
                 </button>
               </div>
             </th>
@@ -104,7 +103,7 @@ export default function Table(props) {
               <div className="d-flex align-items-center justify-content-between">
                 Dead
                 <button className="btn" type="button" onClick={() => requestSort('dead')}>
-                <i className={`fas ${getClassNamesFor('dead')}`}></i>
+                  <i className={`fas ${getClassNamesFor('dead')}`}></i>
                 </button>
               </div>
             </th>
@@ -124,4 +123,6 @@ export default function Table(props) {
       </table>
     </div>
   );
-}
+};
+
+export default Table;

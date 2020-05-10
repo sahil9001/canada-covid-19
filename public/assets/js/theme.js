@@ -46,4 +46,4 @@
     e.preventDefault();
   });
 
-})(jQuery); // End of use strict
+})(window.jQuery); // End of use strict
