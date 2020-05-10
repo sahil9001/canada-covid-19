@@ -101,12 +101,12 @@ export default class Dashboard extends Component {
                   </div>
                   <div className="row">
                     <div className="col-lg col-xl">
-                      <ChartCard>
+                      <ChartCard name="Statistics">
                         <Graph />
                       </ChartCard>
                     </div>
                     <div className="col-lg col-xl">
-                      <ChartCard>
+                      <ChartCard name="Map">
                         <div id="visualization" />
                       </ChartCard>
                     </div>

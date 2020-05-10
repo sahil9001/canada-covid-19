@@ -3,7 +3,7 @@ import React from 'react';
 const ChartCard = props => (
   <div className="card shadow mb-4 animated fadeInUp">
     <div className="card-header d-flex justify-content-between align-items-center">
-      <h6 className="text-primary font-weight-bold m-0">Statistics</h6>
+      <h6 className="text-primary font-weight-bold m-0">{props.name}</h6>
       <div className="dropdown no-arrow">
         <button className="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">
           <i className="fas fa-ellipsis-v text-gray-400"></i>
