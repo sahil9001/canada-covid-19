@@ -1,10 +1,11 @@
+import moment from 'moment';
 import React, { Component } from 'react';
 import ChartCard from '../ChartCard/ChartCard';
+import ColoredChart from '../ColoredChart/ColoredChart';
 import Footer from '../Footer/Footer';
 import OverviewCard from '../OverviewCard/OverviewCard';
 import Table from '../Table/Table';
 import Graph from './Graph';
-import moment from 'moment';
 
 export default class Dashboard extends Component {
   chartRef = React.createRef();
@@ -108,6 +109,33 @@ export default class Dashboard extends Component {
                     <div className="col-lg col-xl">
                       <ChartCard name="Map">
                         <div id="visualization" />
+                      </ChartCard>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg col-xl">
+                      <ChartCard>
+                        <ColoredChart
+                          title="active"
+                          value={82}
+                          province="Saskatchewan"
+                          change={33}
+                          color="success"
+                          chartData={this.getActiveCasesChartData()}
+                        />
+                      </ChartCard>
+                    </div>
+                    <div className="col-lg col-xl">
+                      <ChartCard>
+                        <ColoredChart
+                          title="confirmed"
+                          value={1052}
+                          province="Manitoba"
+                          change={555}
+                          changeGrow
+                          color="danger"
+                          chartData={this.state.data.confirmedCount}
+                        />
                       </ChartCard>
                     </div>
                   </div>
