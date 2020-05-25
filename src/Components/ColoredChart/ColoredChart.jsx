@@ -1,40 +1,39 @@
 import Chart from 'chart.js';
 import moment from 'moment';
 import propTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const ColoredChart = props => {
   const chartRef = useRef(null);
-  const [, setChartInstance] = useState(null);
+
+  const chartColors = (opacity) => ({
+    primary: `rgb(2, 117, 216, ${opacity})`,
+    success: `rgb(92, 184, 92, ${opacity})`,
+    info: `rgb(91, 192, 222, ${opacity})`,
+    warning: `rgb(240, 173, 78, ${opacity})`,
+    danger: `rgb(217, 83, 79, ${opacity})`,
+    secondary: `rgb(134, 142, 150, ${opacity})`
+  });
 
   useEffect(() => {
     if (chartRef && chartRef.current && props.chartData) {
-      const newChartInstance = new Chart(chartRef.current, {
+      const gradientFill = chartRef.current.getContext('2d').createLinearGradient(0, 0, 0, 180);
+      gradientFill.addColorStop(0, chartColors(0.2)[props.color] || chartColors(0.2)['secondary']);
+      gradientFill.addColorStop(1, chartColors(0)[props.color] || chartColors(0)['secondary']);
+
+      new Chart(chartRef.current, {
         type: 'line',
         data: {
           labels: Object.keys(props.chartData),
           datasets: [
             {
               data: Object.values(props.chartData),
-              radius: 0,
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1,
-              hoverRadius: 1
+              backgroundColor: gradientFill,
+              borderColor: chartColors(1)[props.color] || chartColors(1)['secondary'],
+              borderWidth: 2,
+              hoverRadius: 1,
+              lineTension: 0,
+              spanGaps: true
             }
           ]
         },
@@ -42,6 +41,19 @@ const ColoredChart = props => {
           responsive: true,
           legend: {
             display: false
+          },
+          layout: {
+            padding: {
+              left: -5,
+              right: -5,
+              top: 0,
+              bottom: 0
+            }
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
           },
           scales: {
             xAxes: [
@@ -53,7 +65,7 @@ const ColoredChart = props => {
                   autoSkip: true,
                   maxTicksLimit: 5,
                   maxRotation: 0,
-                  callback: function(value, index, values) {
+                  callback: function(value) {
                     return moment(value).format('MMM DD');
                   }
                 }
@@ -65,9 +77,9 @@ const ColoredChart = props => {
                   display: false
                 },
                 ticks: {
-                  autoSkip: true,                  
+                  autoSkip: true,
                   maxTicksLimit: 5,
-                  callback: function(value, index, values) {
+                  callback: function(value, index) {
                     return index === 4 ? value : value / 1000 + 'k';
                   }
                 }
@@ -76,9 +88,8 @@ const ColoredChart = props => {
           }
         }
       });
-      setChartInstance(newChartInstance);
     }
-  }, [chartRef, props.chartData]);
+  }, [chartRef, props.chartData, props.color]);
 
   return (
     <div className="col">
@@ -88,7 +99,7 @@ const ColoredChart = props => {
           <div className="row no-gutters">
             <div className="font-weight-bolder h2 mb-1">{props.value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}</div>
             <div className="col my-auto ml-2">
-              <i className={`fa ${props.changeGrow ? 'fa-arrow-up' : 'fa-arrow-down'}`}></i>
+              <i className={`fa ${props.change > 0 ? 'fa-arrow-up' : 'fa-arrow-down'}`}></i>
               {props.change}
             </div>
           </div>
@@ -99,20 +110,20 @@ const ColoredChart = props => {
         </div>
       </div>
       <div className="row no-gutters align-items-center">
-        <div className="col">{<canvas id="overviewChart" ref={chartRef} />}</div>
+        <div className="col">
+          <canvas id="coloredChart" ref={chartRef} />
+        </div>
       </div>
     </div>
   );
 };
 
 ColoredChart.propTypes = {
-  chartData: propTypes.object.isRequired,
+  chartData: propTypes.object,
   title: propTypes.string.isRequired,
   value: propTypes.number.isRequired,
   change: propTypes.number.isRequired,
-  changeGrow: propTypes.bool,
   province: propTypes.string.isRequired,
-  date: propTypes.string.isRequired,
   color: propTypes.oneOf(['primary', 'success', 'info', 'warning', 'danger', 'secondary'])
 };
 

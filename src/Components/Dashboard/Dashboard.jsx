@@ -12,7 +12,11 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      data: {
+        confirmedCount: {},
+        curedCount: {},
+        deadCount: {}
+      },
       total: 0,
       recovered: 0,
       dead: 0
@@ -117,10 +121,25 @@ export default class Dashboard extends Component {
                       <ChartCard>
                         <ColoredChart
                           title="active"
-                          value={82}
+                          value={
+                            Object.keys(this.getActiveCasesChartData()).length
+                              ? this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 1]
+                                ]
+                              : 0
+                          }
                           province="Saskatchewan"
-                          change={33}
-                          color="success"
+                          change={
+                            Object.keys(this.getActiveCasesChartData()).length
+                              ? this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 1]
+                                ] -
+                                this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 3]
+                                ]
+                              : 0
+                          }
+                          color="dupe"
                           chartData={this.getActiveCasesChartData()}
                         />
                       </ChartCard>
@@ -129,10 +148,16 @@ export default class Dashboard extends Component {
                       <ChartCard>
                         <ColoredChart
                           title="confirmed"
-                          value={1052}
+                          value={this.state.total}
                           province="Manitoba"
-                          change={555}
-                          changeGrow
+                          change={
+                            Object.keys(this.state.data.confirmedCount).length
+                              ? this.state.total -
+                                this.state.data.confirmedCount[
+                                  Object.keys(this.state.data.confirmedCount)[Object.keys(this.state.data.confirmedCount).length - 3]
+                                ]
+                              : 0
+                          }
                           color="danger"
                           chartData={this.state.data.confirmedCount}
                         />
