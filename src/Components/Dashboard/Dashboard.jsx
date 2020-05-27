@@ -1,17 +1,22 @@
+import moment from 'moment';
 import React, { Component } from 'react';
 import ChartCard from '../ChartCard/ChartCard';
+import ColoredChart from '../ColoredChart/ColoredChart';
 import Footer from '../Footer/Footer';
 import OverviewCard from '../OverviewCard/OverviewCard';
 import Table from '../Table/Table';
 import Graph from './Graph';
-import moment from 'moment';
 
 export default class Dashboard extends Component {
   chartRef = React.createRef();
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      data: {
+        confirmedCount: {},
+        curedCount: {},
+        deadCount: {}
+      },
       total: 0,
       recovered: 0,
       dead: 0
@@ -108,6 +113,54 @@ export default class Dashboard extends Component {
                     <div className="col-lg col-xl">
                       <ChartCard name="Map">
                         <div id="visualization" />
+                      </ChartCard>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg col-xl">
+                      <ChartCard>
+                        <ColoredChart
+                          title="active"
+                          value={
+                            Object.keys(this.getActiveCasesChartData()).length
+                              ? this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 1]
+                                ]
+                              : 0
+                          }
+                          province="Saskatchewan"
+                          change={
+                            Object.keys(this.getActiveCasesChartData()).length
+                              ? this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 1]
+                                ] -
+                                this.getActiveCasesChartData()[
+                                  Object.keys(this.getActiveCasesChartData())[Object.keys(this.getActiveCasesChartData()).length - 3]
+                                ]
+                              : 0
+                          }
+                          color="dupe"
+                          chartData={this.getActiveCasesChartData()}
+                        />
+                      </ChartCard>
+                    </div>
+                    <div className="col-lg col-xl">
+                      <ChartCard>
+                        <ColoredChart
+                          title="confirmed"
+                          value={this.state.total}
+                          province="Manitoba"
+                          change={
+                            Object.keys(this.state.data.confirmedCount).length
+                              ? this.state.total -
+                                this.state.data.confirmedCount[
+                                  Object.keys(this.state.data.confirmedCount)[Object.keys(this.state.data.confirmedCount).length - 3]
+                                ]
+                              : 0
+                          }
+                          color="danger"
+                          chartData={this.state.data.confirmedCount}
+                        />
                       </ChartCard>
                     </div>
                   </div>
