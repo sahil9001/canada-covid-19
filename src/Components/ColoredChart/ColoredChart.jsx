@@ -106,7 +106,7 @@ const ColoredChart = props => {
         </div>
         <div className="col text-right">
           <div className="text-uppercase text-sm mb-2">{moment().format('MMM DD')}</div>
-          <div className="text-dark text-uppercase font-weight-bolder mb-1">{props.province}</div>
+          <div className="text-dark text-uppercase font-weight-bolder mb-1">{props.title}</div>
         </div>
       </div>
       <div className="row no-gutters align-items-center">

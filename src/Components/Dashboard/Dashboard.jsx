@@ -78,42 +78,45 @@ export default class Dashboard extends Component {
                 <div className="container-fluid">
                   <div className="d-sm-flex justify-content-between align-items-center mb-4"></div>
                   <div className="row">
-                    <div className="col-md-6 col-xl-3 mb-4">
-                      <OverviewCard title="Total cases" value={this.state.total} chartData={this.state.data.confirmedCount} />
-                    </div>
-                    <div className="col-md-6 col-xl-3 mb-4">
-                      <OverviewCard
-                        title="Active"
-                        value={this.state.total - this.state.recovered - this.state.dead}
-                        chartData={this.getActiveCasesChartData()}
-                      />
-                    </div>
-                    <div className="col-md-6 col-xl-3 mb-4">
-                      <OverviewCard
-                        title="Recovered"
-                        value={this.state.recovered}
-                        chartData={{
-                          ...this.state.data.curedCount,
-                          [moment()
-                            .format('YYYY-MM-DD')
-                            .toString()]: this.state.recovered
-                        }}
-                      />
-                    </div>
-                    <div className="col-md-6 col-xl-3 mb-4">
-                      <OverviewCard title="Deaths" value={this.state.dead} chartData={this.state.data.deadCount} />
-                    </div>
                   </div>
                   <div className="row">
                     <div className="col-lg col-xl">
-                      <ChartCard name="Statistics">
-                        <Graph />
-                      </ChartCard>
+                      <ChartCard>
+                        <ColoredChart
+                          title="confirmed"
+                          value={this.state.total}
+                          province="Manitoba"
+                          change={
+                            Object.keys(this.state.data.confirmedCount).length
+                              ? this.state.total -
+                                this.state.data.confirmedCount[
+                                  Object.keys(this.state.data.confirmedCount)[Object.keys(this.state.data.confirmedCount).length - 3]
+                                ]
+                              : 0
+                          }
+                          color="danger"
+                          chartData={this.state.data.confirmedCount}
+                        />
+                      </ChartCard>                    
                     </div>
                     <div className="col-lg col-xl">
-                      <ChartCard name="Map">
-                        <div id="visualization" />
-                      </ChartCard>
+                      <ChartCard>
+                        <ColoredChart
+                          title="recovered"
+                          value={this.state.recovered}
+                          province="Manitoba"
+                          change={
+                            Object.keys(this.state.data.curedCount).length
+                              ? this.state.recovered -
+                                this.state.data.curedCount[
+                                  Object.keys(this.state.data.curedCount)[Object.keys(this.state.data.curedCount).length - 3]
+                                ]
+                              : 0
+                          }
+                          color="success"
+                          chartData={this.state.data.curedCount}
+                        />
+                      </ChartCard>                    
                     </div>
                   </div>
                   <div className="row">
@@ -139,7 +142,7 @@ export default class Dashboard extends Component {
                                 ]
                               : 0
                           }
-                          color="dupe"
+                          color="info"
                           chartData={this.getActiveCasesChartData()}
                         />
                       </ChartCard>
@@ -147,20 +150,33 @@ export default class Dashboard extends Component {
                     <div className="col-lg col-xl">
                       <ChartCard>
                         <ColoredChart
-                          title="confirmed"
-                          value={this.state.total}
+                          title="dead"
+                          value={this.state.dead}
                           province="Manitoba"
                           change={
-                            Object.keys(this.state.data.confirmedCount).length
-                              ? this.state.total -
-                                this.state.data.confirmedCount[
-                                  Object.keys(this.state.data.confirmedCount)[Object.keys(this.state.data.confirmedCount).length - 3]
+                            Object.keys(this.state.data.deadCount).length
+                              ? this.state.dead -
+                                this.state.data.deadCount[
+                                  Object.keys(this.state.data.deadCount)[Object.keys(this.state.data.deadCount).length - 3]
                                 ]
                               : 0
                           }
-                          color="danger"
-                          chartData={this.state.data.confirmedCount}
+                          color="dupe"
+                          chartData={this.state.data.deadCount}
                         />
+                      </ChartCard>
+                    </div>
+                    
+                  </div>
+                  <div className="row">
+                  <div className="col-lg col-xl">
+                      <ChartCard>
+                        <div id="visualization" />
+                      </ChartCard>
+                    </div>
+                    <div className="col-lg col-xl">
+                      <ChartCard>
+                        <div id="visualization" />
                       </ChartCard>
                     </div>
                   </div>
